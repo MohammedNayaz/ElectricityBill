@@ -1,9 +1,6 @@
 package electricitybill;
 import java.util.*;
 import java.time.LocalDate;
-//import java.util.Random.*;
-//import java.math.*;
-
 
 abstract class EleBoard
 {
@@ -111,14 +108,9 @@ class BillingDetails extends ConnectionDetails
 		System.out.print("Billing Date:");
 		LocalDate ld = LocalDate.now(); 
 	    System.out.println(ld); 
-	    System.out.print("Bill No:");
-	   // Random R = new Random();
+	    System.out.print("Bill No:"); 
 	    System.out.println(Math.random());
 	}	
-			
-		
-	
-
 }
 
 class ConsumptionDetails extends BillingDetails 
@@ -176,6 +168,7 @@ class FixedCharge extends ConsumptionDetails
 		{
 			amt = (units-30)*5.2 + (30*3.75);
 			temp=(units-30)*5.2;
+			
 			System.out.print("30");
 			System.out.print("\t3.75\t");
 			System.out.println(+(30*3.75));
@@ -187,14 +180,15 @@ class FixedCharge extends ConsumptionDetails
 		}
 		else if(units>100 && units<=200)
 		{
-			amt = (units-100)*6.65 + (100*5.2) + (30*3.75);
-			temp=(units-30)*5.2;
+			amt = (units-100)*6.65 + (70*5.2) + (30*3.75);
+			temp=(70)*5.2;
 			temp1=(units-100)*6.65;
+			
 			System.out.print("30");
 			System.out.print("\t3.75\t");
-			System.out.println(+amt);
+			System.out.println(+(30*3.75));
 			
-			System.out.print(+(units-30));
+			System.out.print("70");
 			System.out.print("\t5.2\t");
 			System.out.println(Math.round(+temp));
 			
@@ -204,15 +198,16 @@ class FixedCharge extends ConsumptionDetails
 		}
 		else
 		{
-			amt = (units-200)*8.1 + (200*6.65) + (100*5.2) + (30*3.75);
-			temp=(units-30)*5.2;
+			amt = (units-200)*8.1 + (200*6.65) + (70*5.2) + (30*3.75);
+			temp=(70)*5.2;
 			temp1=(units-100)*6.65;
 			temp2=(units-200)*8.1;
+			
 			System.out.print("30");
 			System.out.print("\t3.75\t");
-			System.out.println(+amt);
+			System.out.println(+(30*3.75));
 			
-			System.out.print(+(units-30));
+			System.out.print("70");
 			System.out.print("\t5.2\t");
 			System.out.println(Math.round(+temp));
 			
@@ -223,9 +218,7 @@ class FixedCharge extends ConsumptionDetails
 			System.out.print(+(units-200));
 			System.out.print("\t6.65\t");
 			System.out.println(Math.round(+temp2));
-		}
-		
-		
+		}		
 	}
 	void FAC_display()
 	{
@@ -273,41 +266,43 @@ class Addition extends FixedCharge
 	void AC_display()
 	{
 		System.out.println("Additional Charges");
-		System.out.println("Rebate:\t"+rebate);
-		System.out.println("PF Penalty:\t"+penalty);
+		System.out.println("Rebate:             \t"+rebate);
+		System.out.println("PF Penalty:         \t"+penalty);
 		
 		if(penalty!=0)
 		{
-			lp=penalty*0.12;
-			System.out.println("Load/MD penalty:\t"+lp);
+  		    lp=penalty*0.12;
+		    System.out.println("Load/MD penalty:\t"+lp);
 		}
 		else
 		{
-			System.out.println("Load/MD penalty:\t0.00");
+		    System.out.println("Load/MD penalty:\t0.00");
 		}
 		
-		System.out.println("Interest:"+intrest);
-		System.out.println("others:"+others);
+		System.out.println("Interest:           \t"+intrest);
+		System.out.println("others:             \t"+others);
 		
 		if(units<100)
 		{
-			tax=31.65;
-			System.out.println("Tax:\t"+tax);
+			tax=31.65; 
+			System.out.println("Tax:            \t"+tax);
 		}
 		else if(units>100)
 		{
 			tax=35.02;
-			System.out.println("Tax:\t"+tax);
+			System.out.println("Tax:            \t"+tax);
 		}
 		
 		BillAmt =  60 + 70 + amt + (units*0.12) + tax;
-		System.out.println("Bill Amt:\t"+BillAmt);
-		System.out.println("Arrears"+Arrears);
-		System.out.println("credits & Adjustment"+cred);
-		System.out.println("GOK Subsidy:"+subsidy);
+		System.out.println("Bill Amt:           \t"+BillAmt);
+		System.out.println("Arrears             \t"+Arrears);
+		System.out.println("credits & Adjustment\t"+cred);
+		System.out.println("GOK Subsidy:        \t"+subsidy);
 		System.out.println("--------------------------------------------------");	
-		System.out.print("Net Amt Due\tRs.");
-		System.out.println(Math.round(+BillAmt));
+		
+		net=60 + 70 + amt + (units*0.12) + tax + rebate + penalty + intrest + others +  Arrears +  cred + subsidy ;
+		System.out.print("Net Amt Due           \tRs.");
+		System.out.println(Math.round(+net));
 		
 	}
 }
@@ -315,17 +310,13 @@ class Addition extends FixedCharge
 
 public class Bill extends Addition
 {
-	//int choice;
-	/*Scanner s7 = new Scanner(System.in);
-	{
-	}*/
 	public static void main(String args[]) 
 	{
 		Bill B = new Bill();
 		System.out.println("-----Electricity board-----");
 		System.out.println("-----O/o AEE(Ele.) City-----");
 		System.out.println("\nEnter the Details----");
-		//System.out.println("Select Type \n 1.Domestic \n 2.Commercial");
+		
 		B.AD_input();
 		B.PD_input();
 		B.CD_input();
@@ -359,18 +350,19 @@ public class Bill extends Addition
 }
 
 /*
-Output:
+Expected Output:
+
 -----Electricity board-----
 -----O/o AEE(Ele.) City-----
 
 Enter the Details----
 Account Details
 RR no:
-123123
+1212121
 Account number:
-123456789
+2323232
 MR Code:
-121234
+4578
 Name:
 Mdn
 Address:
@@ -409,9 +401,9 @@ GOK Subsidy:
 -----Electricity board-----
 -----O/o AEE(Ele.) City-----
 Account Details 
-RR No: 	123123
-Acc Id:	123456789
-M.R Code:	121234
+RR No: 	1212121
+Acc Id:	2323232
+M.R Code:	4578
 --------------------------------------------------
 PersonalDetails
 Name and Address
@@ -422,10 +414,9 @@ Tariff:	1LT2A1-N
 Sane Load	2KW+0HP
 --------------------------------------------------
 Billing Details
-Bill Period	
-22/07/2020 : 22/08/2020
-Billing Date:2020-08-22
-Bill No:0.21635441124687993
+Bill Period   	22/07/2020 : 22/08/2020
+Billing Date: 	2020-08-23
+Bill No:0.8444379962901818
 --------------------------------------------------
 Consumption Details
 Prev. Rdng:	6673
@@ -435,7 +426,7 @@ Consuption(units)76
 Average
 Record MD:	0KW
 Power Factor:	0.0
-Connected Load 0.0KW
+Connected Load: 0.0KW
 --------------------------------------------------
 Fixed Charges (Unit, Rate, Amount)
 1KW	60	60.00
@@ -449,18 +440,19 @@ FAC Charges(Unit, Rate, Amount)
 76.0	 0.12 	9.12
 --------------------------------------------------
 Additional Charges
-Rebate:	0.0
-PF Penalty:	0.0
+Rebate:             	0.0
+PF Penalty:         	0.0
 Load/MD penalty:	0.00
-Interest:0.0
-others:0.0
-Tax:	31.65
-Bill Amt:	522.47
-Arrears0.0
-credits & Adjustment0.0
-GOK Subsidy:0.0
+Interest:           	0.0
+others:             	0.0
+Tax:            	31.65
+Bill Amt:           	522.47
+Arrears             	0.0
+credits & Adjustment	0.0
+GOK Subsidy:        	0.0
 --------------------------------------------------
-Net Amt Due	Rs.522
-	2020-08-22
+Net Amt Due           	Rs.522
+Due Date       	2020-08-23
+
 
 */
