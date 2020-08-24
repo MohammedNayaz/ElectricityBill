@@ -160,7 +160,7 @@ class FixedCharge extends ConsumptionDetails
 			amt = units*3.75;
 			System.out.print(units);
 			System.out.print("\t3.75\t");
-			System.out.println(+(30*3.75));
+			System.out.println(+amt);
 			
 			
 		}
