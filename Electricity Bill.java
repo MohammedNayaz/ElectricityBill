@@ -236,7 +236,7 @@ class FixedCharge extends ConsumptionDetails
 
 class Addition extends FixedCharge
 {
-	float rebate, penalty, intrest, others,  Arrears, cred, subsidy;
+	float rebate, penalty, intrest, others,  Arrears, cred, subsidy, net;
 	double lp, BillAmt, tax;
 	
 		Scanner s6 = new Scanner(System.in);
