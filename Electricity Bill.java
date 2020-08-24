@@ -151,7 +151,7 @@ class FixedCharge extends ConsumptionDetails
 	{
 		System.out.println("Fixed Charges (Unit, Rate, Amount)");
 		System.out.println("1KW\t60\t60.00");
-		System.out.println("1KW\t60\t70.00");
+		System.out.println("1KW\t70\t70.00");
 		System.out.println("--------------------------------------------------");
 		System.out.println("Energy Charges (Unit, Rate, Amount)");
 		
