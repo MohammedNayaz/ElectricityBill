@@ -430,7 +430,7 @@ Connected Load: 0.0KW
 --------------------------------------------------
 Fixed Charges (Unit, Rate, Amount)
 1KW	60	60.00
-1KW	60	70.00
+1KW	70	70.00
 --------------------------------------------------
 Energy Charges (Unit, Rate, Amount)
 30	3.75	112.5
